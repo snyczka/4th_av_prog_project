@@ -1,0 +1,1533 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    CAST
+    CREATE_TABLE
+    DEFAULT
+    DROP_TABLE
+    EXISTS
+    FOREIGN_KEY
+    IN
+    IS_NULL
+    LIKE
+    LIMIT
+    MINUS
+    PRIMARY_KEY
+    UNIQUE
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> query END
+Rule 2     empty -> <empty>
+Rule 3     query -> SELECT attributes FROM grouping
+Rule 4     query -> SELECT COUNT LPAREN attributes RPAREN FROM grouping
+Rule 5     query -> SELECT attributes FROM grouping JOIN NAME ON joiner condition
+Rule 6     query -> SELECT attributes FROM grouping GROUP_BY NAME
+Rule 7     query -> SELECT COUNT LPAREN attributes RPAREN FROM grouping GROUP_BY NAME
+Rule 8     query -> SELECT COUNT LPAREN attributes RPAREN FROM grouping GROUP_BY NAME HAVING bool
+Rule 9     query -> SELECT attributes FROM grouping GROUP_BY NAME ORDER_BY attributes
+Rule 10    query -> SELECT attributes FROM grouping GROUP_BY NAME HAVING bool
+Rule 11    grouping -> NAME condition
+Rule 12    attributes -> ANY
+Rule 13    attributes -> DISTINCT NAME
+Rule 14    attributes -> LPAREN values RPAREN
+Rule 15    attributes -> values
+Rule 16    values -> NAME
+Rule 17    values -> NAME COMMA values
+Rule 18    values -> UP_COMMA NAME UP_COMMA
+Rule 19    values -> UP_COMMA NAME UP_COMMA COMMA values
+Rule 20    values -> NUMBER
+Rule 21    values -> ANY
+Rule 22    joiner -> NAME DOT NAME EQUALS NAME DOT NAME
+Rule 23    condition -> WHERE bool
+Rule 24    condition -> empty
+Rule 25    bool -> NAME EQUALS NUMBER
+Rule 26    bool -> NAME LESSER_THAN NUMBER
+Rule 27    bool -> NAME GREATER_THAN NUMBER
+Rule 28    bool -> bool AND bool
+Rule 29    bool -> NAME EQUALS UP_COMMA NAME UP_COMMA
+Rule 30    bool -> NAME DOT NAME EQUALS UP_COMMA NAME UP_COMMA
+Rule 31    bool -> NAME DOT NAME EQUALS NUMBER
+Rule 32    bool -> NAME DOT NAME LESSER_THAN NUMBER
+Rule 33    bool -> NAME DOT NAME GREATER_THAN NUMBER
+Rule 34    bool -> COUNT LPAREN values RPAREN GREATER_THAN NUMBER
+Rule 35    bool -> COUNT LPAREN values RPAREN LESSER_THAN NUMBER
+Rule 36    bool -> COUNT LPAREN values RPAREN EQUALS NUMBER
+Rule 37    bool -> NAME BETWEEN NUMBER AND NUMBER
+Rule 38    query -> INSERT_INTO NAME attributes insertion
+Rule 39    insertion -> VALUES LPAREN values RPAREN
+Rule 40    query -> UPDATE NAME SET editions condition
+Rule 41    editions -> NAME EQUALS NUMBER
+Rule 42    editions -> NAME EQUALS UP_COMMA NAME UP_COMMA
+Rule 43    editions -> editions COMMA editions
+Rule 44    query -> ALTER_TABLE NAME alteration
+Rule 45    alteration -> DROP_COLUMN NAME
+Rule 46    alteration -> ADD_COLUMN addition
+Rule 47    addition -> NAME typing setting
+Rule 48    typing -> NAME LPAREN NUMBER RPAREN
+Rule 49    typing -> NAME
+Rule 50    setting -> NOT_NULL
+Rule 51    query -> DELETE_FROM NAME condition
+
+Terminals, with rules where they appear
+
+ADD_COLUMN           : 46
+ALTER_TABLE          : 44
+AND                  : 28 37
+ANY                  : 12 21
+BETWEEN              : 37
+CAST                 : 
+COMMA                : 17 19 43
+COUNT                : 4 7 8 34 35 36
+CREATE_TABLE         : 
+DEFAULT              : 
+DELETE_FROM          : 51
+DISTINCT             : 13
+DOT                  : 22 22 30 31 32 33
+DROP_COLUMN          : 45
+DROP_TABLE           : 
+END                  : 1
+EQUALS               : 22 25 29 30 31 36 41 42
+EXISTS               : 
+FOREIGN_KEY          : 
+FROM                 : 3 4 5 6 7 8 9 10
+GREATER_THAN         : 27 33 34
+GROUP_BY             : 6 7 8 9 10
+HAVING               : 8 10
+IN                   : 
+INSERT_INTO          : 38
+IS_NULL              : 
+JOIN                 : 5
+LESSER_THAN          : 26 32 35
+LIKE                 : 
+LIMIT                : 
+LPAREN               : 4 7 8 14 34 35 36 39 48
+MINUS                : 
+NAME                 : 5 6 7 8 9 10 11 13 16 17 18 19 22 22 22 22 25 26 27 29 29 30 30 30 31 31 32 32 33 33 37 38 40 41 42 42 44 45 47 48 49 51
+NOT_NULL             : 50
+NUMBER               : 20 25 26 27 31 32 33 34 35 36 37 37 41 48
+ON                   : 5
+ORDER_BY             : 9
+PRIMARY_KEY          : 
+RPAREN               : 4 7 8 14 34 35 36 39 48
+SELECT               : 3 4 5 6 7 8 9 10
+SET                  : 40
+UNIQUE               : 
+UPDATE               : 40
+UP_COMMA             : 18 18 19 19 29 29 30 30 42 42
+VALUES               : 39
+WHERE                : 23
+error                : 
+
+Nonterminals, with rules where they appear
+
+addition             : 46
+alteration           : 44
+attributes           : 3 4 5 6 7 8 9 9 10 38
+bool                 : 8 10 23 28 28
+condition            : 5 11 40 51
+editions             : 40 43 43
+empty                : 24
+grouping             : 3 4 5 6 7 8 9 10
+insertion            : 38
+joiner               : 5
+query                : 1
+setting              : 47
+statement            : 0
+typing               : 47
+values               : 14 15 17 19 34 35 36 39
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . query END
+    (3) query -> . SELECT attributes FROM grouping
+    (4) query -> . SELECT COUNT LPAREN attributes RPAREN FROM grouping
+    (5) query -> . SELECT attributes FROM grouping JOIN NAME ON joiner condition
+    (6) query -> . SELECT attributes FROM grouping GROUP_BY NAME
+    (7) query -> . SELECT COUNT LPAREN attributes RPAREN FROM grouping GROUP_BY NAME
+    (8) query -> . SELECT COUNT LPAREN attributes RPAREN FROM grouping GROUP_BY NAME HAVING bool
+    (9) query -> . SELECT attributes FROM grouping GROUP_BY NAME ORDER_BY attributes
+    (10) query -> . SELECT attributes FROM grouping GROUP_BY NAME HAVING bool
+    (38) query -> . INSERT_INTO NAME attributes insertion
+    (40) query -> . UPDATE NAME SET editions condition
+    (44) query -> . ALTER_TABLE NAME alteration
+    (51) query -> . DELETE_FROM NAME condition
+
+    SELECT          shift and go to state 3
+    INSERT_INTO     shift and go to state 4
+    UPDATE          shift and go to state 5
+    ALTER_TABLE     shift and go to state 6
+    DELETE_FROM     shift and go to state 7
+
+    statement                      shift and go to state 1
+    query                          shift and go to state 2
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> query . END
+
+    END             shift and go to state 8
+
+
+state 3
+
+    (3) query -> SELECT . attributes FROM grouping
+    (4) query -> SELECT . COUNT LPAREN attributes RPAREN FROM grouping
+    (5) query -> SELECT . attributes FROM grouping JOIN NAME ON joiner condition
+    (6) query -> SELECT . attributes FROM grouping GROUP_BY NAME
+    (7) query -> SELECT . COUNT LPAREN attributes RPAREN FROM grouping GROUP_BY NAME
+    (8) query -> SELECT . COUNT LPAREN attributes RPAREN FROM grouping GROUP_BY NAME HAVING bool
+    (9) query -> SELECT . attributes FROM grouping GROUP_BY NAME ORDER_BY attributes
+    (10) query -> SELECT . attributes FROM grouping GROUP_BY NAME HAVING bool
+    (12) attributes -> . ANY
+    (13) attributes -> . DISTINCT NAME
+    (14) attributes -> . LPAREN values RPAREN
+    (15) attributes -> . values
+    (16) values -> . NAME
+    (17) values -> . NAME COMMA values
+    (18) values -> . UP_COMMA NAME UP_COMMA
+    (19) values -> . UP_COMMA NAME UP_COMMA COMMA values
+    (20) values -> . NUMBER
+    (21) values -> . ANY
+
+    COUNT           shift and go to state 10
+    ANY             shift and go to state 13
+    DISTINCT        shift and go to state 14
+    LPAREN          shift and go to state 11
+    NAME            shift and go to state 12
+    UP_COMMA        shift and go to state 16
+    NUMBER          shift and go to state 17
+
+    attributes                     shift and go to state 9
+    values                         shift and go to state 15
+
+state 4
+
+    (38) query -> INSERT_INTO . NAME attributes insertion
+
+    NAME            shift and go to state 18
+
+
+state 5
+
+    (40) query -> UPDATE . NAME SET editions condition
+
+    NAME            shift and go to state 19
+
+
+state 6
+
+    (44) query -> ALTER_TABLE . NAME alteration
+
+    NAME            shift and go to state 20
+
+
+state 7
+
+    (51) query -> DELETE_FROM . NAME condition
+
+    NAME            shift and go to state 21
+
+
+state 8
+
+    (1) statement -> query END .
+
+    $end            reduce using rule 1 (statement -> query END .)
+
+
+state 9
+
+    (3) query -> SELECT attributes . FROM grouping
+    (5) query -> SELECT attributes . FROM grouping JOIN NAME ON joiner condition
+    (6) query -> SELECT attributes . FROM grouping GROUP_BY NAME
+    (9) query -> SELECT attributes . FROM grouping GROUP_BY NAME ORDER_BY attributes
+    (10) query -> SELECT attributes . FROM grouping GROUP_BY NAME HAVING bool
+
+    FROM            shift and go to state 22
+
+
+state 10
+
+    (4) query -> SELECT COUNT . LPAREN attributes RPAREN FROM grouping
+    (7) query -> SELECT COUNT . LPAREN attributes RPAREN FROM grouping GROUP_BY NAME
+    (8) query -> SELECT COUNT . LPAREN attributes RPAREN FROM grouping GROUP_BY NAME HAVING bool
+
+    LPAREN          shift and go to state 23
+
+
+state 11
+
+    (14) attributes -> LPAREN . values RPAREN
+    (16) values -> . NAME
+    (17) values -> . NAME COMMA values
+    (18) values -> . UP_COMMA NAME UP_COMMA
+    (19) values -> . UP_COMMA NAME UP_COMMA COMMA values
+    (20) values -> . NUMBER
+    (21) values -> . ANY
+
+    NAME            shift and go to state 12
+    UP_COMMA        shift and go to state 16
+    NUMBER          shift and go to state 17
+    ANY             shift and go to state 25
+
+    values                         shift and go to state 24
+
+state 12
+
+    (16) values -> NAME .
+    (17) values -> NAME . COMMA values
+
+    FROM            reduce using rule 16 (values -> NAME .)
+    RPAREN          reduce using rule 16 (values -> NAME .)
+    VALUES          reduce using rule 16 (values -> NAME .)
+    END             reduce using rule 16 (values -> NAME .)
+    COMMA           shift and go to state 26
+
+
+state 13
+
+    (12) attributes -> ANY .
+    (21) values -> ANY .
+
+  ! reduce/reduce conflict for FROM resolved using rule 12 (attributes -> ANY .)
+  ! reduce/reduce conflict for VALUES resolved using rule 12 (attributes -> ANY .)
+  ! reduce/reduce conflict for RPAREN resolved using rule 12 (attributes -> ANY .)
+  ! reduce/reduce conflict for END resolved using rule 12 (attributes -> ANY .)
+    FROM            reduce using rule 12 (attributes -> ANY .)
+    VALUES          reduce using rule 12 (attributes -> ANY .)
+    RPAREN          reduce using rule 12 (attributes -> ANY .)
+    END             reduce using rule 12 (attributes -> ANY .)
+
+  ! FROM            [ reduce using rule 21 (values -> ANY .) ]
+  ! VALUES          [ reduce using rule 21 (values -> ANY .) ]
+  ! RPAREN          [ reduce using rule 21 (values -> ANY .) ]
+  ! END             [ reduce using rule 21 (values -> ANY .) ]
+
+
+state 14
+
+    (13) attributes -> DISTINCT . NAME
+
+    NAME            shift and go to state 27
+
+
+state 15
+
+    (15) attributes -> values .
+
+    FROM            reduce using rule 15 (attributes -> values .)
+    VALUES          reduce using rule 15 (attributes -> values .)
+    RPAREN          reduce using rule 15 (attributes -> values .)
+    END             reduce using rule 15 (attributes -> values .)
+
+
+state 16
+
+    (18) values -> UP_COMMA . NAME UP_COMMA
+    (19) values -> UP_COMMA . NAME UP_COMMA COMMA values
+
+    NAME            shift and go to state 28
+
+
+state 17
+
+    (20) values -> NUMBER .
+
+    FROM            reduce using rule 20 (values -> NUMBER .)
+    RPAREN          reduce using rule 20 (values -> NUMBER .)
+    VALUES          reduce using rule 20 (values -> NUMBER .)
+    END             reduce using rule 20 (values -> NUMBER .)
+
+
+state 18
+
+    (38) query -> INSERT_INTO NAME . attributes insertion
+    (12) attributes -> . ANY
+    (13) attributes -> . DISTINCT NAME
+    (14) attributes -> . LPAREN values RPAREN
+    (15) attributes -> . values
+    (16) values -> . NAME
+    (17) values -> . NAME COMMA values
+    (18) values -> . UP_COMMA NAME UP_COMMA
+    (19) values -> . UP_COMMA NAME UP_COMMA COMMA values
+    (20) values -> . NUMBER
+    (21) values -> . ANY
+
+    ANY             shift and go to state 13
+    DISTINCT        shift and go to state 14
+    LPAREN          shift and go to state 11
+    NAME            shift and go to state 12
+    UP_COMMA        shift and go to state 16
+    NUMBER          shift and go to state 17
+
+    attributes                     shift and go to state 29
+    values                         shift and go to state 15
+
+state 19
+
+    (40) query -> UPDATE NAME . SET editions condition
+
+    SET             shift and go to state 30
+
+
+state 20
+
+    (44) query -> ALTER_TABLE NAME . alteration
+    (45) alteration -> . DROP_COLUMN NAME
+    (46) alteration -> . ADD_COLUMN addition
+
+    DROP_COLUMN     shift and go to state 32
+    ADD_COLUMN      shift and go to state 33
+
+    alteration                     shift and go to state 31
+
+state 21
+
+    (51) query -> DELETE_FROM NAME . condition
+    (23) condition -> . WHERE bool
+    (24) condition -> . empty
+    (2) empty -> .
+
+    WHERE           shift and go to state 35
+    END             reduce using rule 2 (empty -> .)
+
+    condition                      shift and go to state 34
+    empty                          shift and go to state 36
+
+state 22
+
+    (3) query -> SELECT attributes FROM . grouping
+    (5) query -> SELECT attributes FROM . grouping JOIN NAME ON joiner condition
+    (6) query -> SELECT attributes FROM . grouping GROUP_BY NAME
+    (9) query -> SELECT attributes FROM . grouping GROUP_BY NAME ORDER_BY attributes
+    (10) query -> SELECT attributes FROM . grouping GROUP_BY NAME HAVING bool
+    (11) grouping -> . NAME condition
+
+    NAME            shift and go to state 38
+
+    grouping                       shift and go to state 37
+
+state 23
+
+    (4) query -> SELECT COUNT LPAREN . attributes RPAREN FROM grouping
+    (7) query -> SELECT COUNT LPAREN . attributes RPAREN FROM grouping GROUP_BY NAME
+    (8) query -> SELECT COUNT LPAREN . attributes RPAREN FROM grouping GROUP_BY NAME HAVING bool
+    (12) attributes -> . ANY
+    (13) attributes -> . DISTINCT NAME
+    (14) attributes -> . LPAREN values RPAREN
+    (15) attributes -> . values
+    (16) values -> . NAME
+    (17) values -> . NAME COMMA values
+    (18) values -> . UP_COMMA NAME UP_COMMA
+    (19) values -> . UP_COMMA NAME UP_COMMA COMMA values
+    (20) values -> . NUMBER
+    (21) values -> . ANY
+
+    ANY             shift and go to state 13
+    DISTINCT        shift and go to state 14
+    LPAREN          shift and go to state 11
+    NAME            shift and go to state 12
+    UP_COMMA        shift and go to state 16
+    NUMBER          shift and go to state 17
+
+    attributes                     shift and go to state 39
+    values                         shift and go to state 15
+
+state 24
+
+    (14) attributes -> LPAREN values . RPAREN
+
+    RPAREN          shift and go to state 40
+
+
+state 25
+
+    (21) values -> ANY .
+
+    RPAREN          reduce using rule 21 (values -> ANY .)
+    FROM            reduce using rule 21 (values -> ANY .)
+    VALUES          reduce using rule 21 (values -> ANY .)
+    END             reduce using rule 21 (values -> ANY .)
+
+
+state 26
+
+    (17) values -> NAME COMMA . values
+    (16) values -> . NAME
+    (17) values -> . NAME COMMA values
+    (18) values -> . UP_COMMA NAME UP_COMMA
+    (19) values -> . UP_COMMA NAME UP_COMMA COMMA values
+    (20) values -> . NUMBER
+    (21) values -> . ANY
+
+    NAME            shift and go to state 12
+    UP_COMMA        shift and go to state 16
+    NUMBER          shift and go to state 17
+    ANY             shift and go to state 25
+
+    values                         shift and go to state 41
+
+state 27
+
+    (13) attributes -> DISTINCT NAME .
+
+    FROM            reduce using rule 13 (attributes -> DISTINCT NAME .)
+    VALUES          reduce using rule 13 (attributes -> DISTINCT NAME .)
+    RPAREN          reduce using rule 13 (attributes -> DISTINCT NAME .)
+    END             reduce using rule 13 (attributes -> DISTINCT NAME .)
+
+
+state 28
+
+    (18) values -> UP_COMMA NAME . UP_COMMA
+    (19) values -> UP_COMMA NAME . UP_COMMA COMMA values
+
+    UP_COMMA        shift and go to state 42
+
+
+state 29
+
+    (38) query -> INSERT_INTO NAME attributes . insertion
+    (39) insertion -> . VALUES LPAREN values RPAREN
+
+    VALUES          shift and go to state 44
+
+    insertion                      shift and go to state 43
+
+state 30
+
+    (40) query -> UPDATE NAME SET . editions condition
+    (41) editions -> . NAME EQUALS NUMBER
+    (42) editions -> . NAME EQUALS UP_COMMA NAME UP_COMMA
+    (43) editions -> . editions COMMA editions
+
+    NAME            shift and go to state 45
+
+    editions                       shift and go to state 46
+
+state 31
+
+    (44) query -> ALTER_TABLE NAME alteration .
+
+    END             reduce using rule 44 (query -> ALTER_TABLE NAME alteration .)
+
+
+state 32
+
+    (45) alteration -> DROP_COLUMN . NAME
+
+    NAME            shift and go to state 47
+
+
+state 33
+
+    (46) alteration -> ADD_COLUMN . addition
+    (47) addition -> . NAME typing setting
+
+    NAME            shift and go to state 49
+
+    addition                       shift and go to state 48
+
+state 34
+
+    (51) query -> DELETE_FROM NAME condition .
+
+    END             reduce using rule 51 (query -> DELETE_FROM NAME condition .)
+
+
+state 35
+
+    (23) condition -> WHERE . bool
+    (25) bool -> . NAME EQUALS NUMBER
+    (26) bool -> . NAME LESSER_THAN NUMBER
+    (27) bool -> . NAME GREATER_THAN NUMBER
+    (28) bool -> . bool AND bool
+    (29) bool -> . NAME EQUALS UP_COMMA NAME UP_COMMA
+    (30) bool -> . NAME DOT NAME EQUALS UP_COMMA NAME UP_COMMA
+    (31) bool -> . NAME DOT NAME EQUALS NUMBER
+    (32) bool -> . NAME DOT NAME LESSER_THAN NUMBER
+    (33) bool -> . NAME DOT NAME GREATER_THAN NUMBER
+    (34) bool -> . COUNT LPAREN values RPAREN GREATER_THAN NUMBER
+    (35) bool -> . COUNT LPAREN values RPAREN LESSER_THAN NUMBER
+    (36) bool -> . COUNT LPAREN values RPAREN EQUALS NUMBER
+    (37) bool -> . NAME BETWEEN NUMBER AND NUMBER
+
+    NAME            shift and go to state 51
+    COUNT           shift and go to state 52
+
+    bool                           shift and go to state 50
+
+state 36
+
+    (24) condition -> empty .
+
+    END             reduce using rule 24 (condition -> empty .)
+    JOIN            reduce using rule 24 (condition -> empty .)
+    GROUP_BY        reduce using rule 24 (condition -> empty .)
+
+
+state 37
+
+    (3) query -> SELECT attributes FROM grouping .
+    (5) query -> SELECT attributes FROM grouping . JOIN NAME ON joiner condition
+    (6) query -> SELECT attributes FROM grouping . GROUP_BY NAME
+    (9) query -> SELECT attributes FROM grouping . GROUP_BY NAME ORDER_BY attributes
+    (10) query -> SELECT attributes FROM grouping . GROUP_BY NAME HAVING bool
+
+    END             reduce using rule 3 (query -> SELECT attributes FROM grouping .)
+    JOIN            shift and go to state 53
+    GROUP_BY        shift and go to state 54
+
+
+state 38
+
+    (11) grouping -> NAME . condition
+    (23) condition -> . WHERE bool
+    (24) condition -> . empty
+    (2) empty -> .
+
+    WHERE           shift and go to state 35
+    JOIN            reduce using rule 2 (empty -> .)
+    GROUP_BY        reduce using rule 2 (empty -> .)
+    END             reduce using rule 2 (empty -> .)
+
+    condition                      shift and go to state 55
+    empty                          shift and go to state 36
+
+state 39
+
+    (4) query -> SELECT COUNT LPAREN attributes . RPAREN FROM grouping
+    (7) query -> SELECT COUNT LPAREN attributes . RPAREN FROM grouping GROUP_BY NAME
+    (8) query -> SELECT COUNT LPAREN attributes . RPAREN FROM grouping GROUP_BY NAME HAVING bool
+
+    RPAREN          shift and go to state 56
+
+
+state 40
+
+    (14) attributes -> LPAREN values RPAREN .
+
+    FROM            reduce using rule 14 (attributes -> LPAREN values RPAREN .)
+    VALUES          reduce using rule 14 (attributes -> LPAREN values RPAREN .)
+    RPAREN          reduce using rule 14 (attributes -> LPAREN values RPAREN .)
+    END             reduce using rule 14 (attributes -> LPAREN values RPAREN .)
+
+
+state 41
+
+    (17) values -> NAME COMMA values .
+
+    FROM            reduce using rule 17 (values -> NAME COMMA values .)
+    RPAREN          reduce using rule 17 (values -> NAME COMMA values .)
+    VALUES          reduce using rule 17 (values -> NAME COMMA values .)
+    END             reduce using rule 17 (values -> NAME COMMA values .)
+
+
+state 42
+
+    (18) values -> UP_COMMA NAME UP_COMMA .
+    (19) values -> UP_COMMA NAME UP_COMMA . COMMA values
+
+    FROM            reduce using rule 18 (values -> UP_COMMA NAME UP_COMMA .)
+    RPAREN          reduce using rule 18 (values -> UP_COMMA NAME UP_COMMA .)
+    VALUES          reduce using rule 18 (values -> UP_COMMA NAME UP_COMMA .)
+    END             reduce using rule 18 (values -> UP_COMMA NAME UP_COMMA .)
+    COMMA           shift and go to state 57
+
+
+state 43
+
+    (38) query -> INSERT_INTO NAME attributes insertion .
+
+    END             reduce using rule 38 (query -> INSERT_INTO NAME attributes insertion .)
+
+
+state 44
+
+    (39) insertion -> VALUES . LPAREN values RPAREN
+
+    LPAREN          shift and go to state 58
+
+
+state 45
+
+    (41) editions -> NAME . EQUALS NUMBER
+    (42) editions -> NAME . EQUALS UP_COMMA NAME UP_COMMA
+
+    EQUALS          shift and go to state 59
+
+
+state 46
+
+    (40) query -> UPDATE NAME SET editions . condition
+    (43) editions -> editions . COMMA editions
+    (23) condition -> . WHERE bool
+    (24) condition -> . empty
+    (2) empty -> .
+
+    COMMA           shift and go to state 61
+    WHERE           shift and go to state 35
+    END             reduce using rule 2 (empty -> .)
+
+    condition                      shift and go to state 60
+    empty                          shift and go to state 36
+
+state 47
+
+    (45) alteration -> DROP_COLUMN NAME .
+
+    END             reduce using rule 45 (alteration -> DROP_COLUMN NAME .)
+
+
+state 48
+
+    (46) alteration -> ADD_COLUMN addition .
+
+    END             reduce using rule 46 (alteration -> ADD_COLUMN addition .)
+
+
+state 49
+
+    (47) addition -> NAME . typing setting
+    (48) typing -> . NAME LPAREN NUMBER RPAREN
+    (49) typing -> . NAME
+
+    NAME            shift and go to state 62
+
+    typing                         shift and go to state 63
+
+state 50
+
+    (23) condition -> WHERE bool .
+    (28) bool -> bool . AND bool
+
+    END             reduce using rule 23 (condition -> WHERE bool .)
+    JOIN            reduce using rule 23 (condition -> WHERE bool .)
+    GROUP_BY        reduce using rule 23 (condition -> WHERE bool .)
+    AND             shift and go to state 64
+
+
+state 51
+
+    (25) bool -> NAME . EQUALS NUMBER
+    (26) bool -> NAME . LESSER_THAN NUMBER
+    (27) bool -> NAME . GREATER_THAN NUMBER
+    (29) bool -> NAME . EQUALS UP_COMMA NAME UP_COMMA
+    (30) bool -> NAME . DOT NAME EQUALS UP_COMMA NAME UP_COMMA
+    (31) bool -> NAME . DOT NAME EQUALS NUMBER
+    (32) bool -> NAME . DOT NAME LESSER_THAN NUMBER
+    (33) bool -> NAME . DOT NAME GREATER_THAN NUMBER
+    (37) bool -> NAME . BETWEEN NUMBER AND NUMBER
+
+    EQUALS          shift and go to state 65
+    LESSER_THAN     shift and go to state 66
+    GREATER_THAN    shift and go to state 67
+    DOT             shift and go to state 68
+    BETWEEN         shift and go to state 69
+
+
+state 52
+
+    (34) bool -> COUNT . LPAREN values RPAREN GREATER_THAN NUMBER
+    (35) bool -> COUNT . LPAREN values RPAREN LESSER_THAN NUMBER
+    (36) bool -> COUNT . LPAREN values RPAREN EQUALS NUMBER
+
+    LPAREN          shift and go to state 70
+
+
+state 53
+
+    (5) query -> SELECT attributes FROM grouping JOIN . NAME ON joiner condition
+
+    NAME            shift and go to state 71
+
+
+state 54
+
+    (6) query -> SELECT attributes FROM grouping GROUP_BY . NAME
+    (9) query -> SELECT attributes FROM grouping GROUP_BY . NAME ORDER_BY attributes
+    (10) query -> SELECT attributes FROM grouping GROUP_BY . NAME HAVING bool
+
+    NAME            shift and go to state 72
+
+
+state 55
+
+    (11) grouping -> NAME condition .
+
+    JOIN            reduce using rule 11 (grouping -> NAME condition .)
+    GROUP_BY        reduce using rule 11 (grouping -> NAME condition .)
+    END             reduce using rule 11 (grouping -> NAME condition .)
+
+
+state 56
+
+    (4) query -> SELECT COUNT LPAREN attributes RPAREN . FROM grouping
+    (7) query -> SELECT COUNT LPAREN attributes RPAREN . FROM grouping GROUP_BY NAME
+    (8) query -> SELECT COUNT LPAREN attributes RPAREN . FROM grouping GROUP_BY NAME HAVING bool
+
+    FROM            shift and go to state 73
+
+
+state 57
+
+    (19) values -> UP_COMMA NAME UP_COMMA COMMA . values
+    (16) values -> . NAME
+    (17) values -> . NAME COMMA values
+    (18) values -> . UP_COMMA NAME UP_COMMA
+    (19) values -> . UP_COMMA NAME UP_COMMA COMMA values
+    (20) values -> . NUMBER
+    (21) values -> . ANY
+
+    NAME            shift and go to state 12
+    UP_COMMA        shift and go to state 16
+    NUMBER          shift and go to state 17
+    ANY             shift and go to state 25
+
+    values                         shift and go to state 74
+
+state 58
+
+    (39) insertion -> VALUES LPAREN . values RPAREN
+    (16) values -> . NAME
+    (17) values -> . NAME COMMA values
+    (18) values -> . UP_COMMA NAME UP_COMMA
+    (19) values -> . UP_COMMA NAME UP_COMMA COMMA values
+    (20) values -> . NUMBER
+    (21) values -> . ANY
+
+    NAME            shift and go to state 12
+    UP_COMMA        shift and go to state 16
+    NUMBER          shift and go to state 17
+    ANY             shift and go to state 25
+
+    values                         shift and go to state 75
+
+state 59
+
+    (41) editions -> NAME EQUALS . NUMBER
+    (42) editions -> NAME EQUALS . UP_COMMA NAME UP_COMMA
+
+    NUMBER          shift and go to state 76
+    UP_COMMA        shift and go to state 77
+
+
+state 60
+
+    (40) query -> UPDATE NAME SET editions condition .
+
+    END             reduce using rule 40 (query -> UPDATE NAME SET editions condition .)
+
+
+state 61
+
+    (43) editions -> editions COMMA . editions
+    (41) editions -> . NAME EQUALS NUMBER
+    (42) editions -> . NAME EQUALS UP_COMMA NAME UP_COMMA
+    (43) editions -> . editions COMMA editions
+
+    NAME            shift and go to state 45
+
+    editions                       shift and go to state 78
+
+state 62
+
+    (48) typing -> NAME . LPAREN NUMBER RPAREN
+    (49) typing -> NAME .
+
+    LPAREN          shift and go to state 79
+    NOT_NULL        reduce using rule 49 (typing -> NAME .)
+
+
+state 63
+
+    (47) addition -> NAME typing . setting
+    (50) setting -> . NOT_NULL
+
+    NOT_NULL        shift and go to state 81
+
+    setting                        shift and go to state 80
+
+state 64
+
+    (28) bool -> bool AND . bool
+    (25) bool -> . NAME EQUALS NUMBER
+    (26) bool -> . NAME LESSER_THAN NUMBER
+    (27) bool -> . NAME GREATER_THAN NUMBER
+    (28) bool -> . bool AND bool
+    (29) bool -> . NAME EQUALS UP_COMMA NAME UP_COMMA
+    (30) bool -> . NAME DOT NAME EQUALS UP_COMMA NAME UP_COMMA
+    (31) bool -> . NAME DOT NAME EQUALS NUMBER
+    (32) bool -> . NAME DOT NAME LESSER_THAN NUMBER
+    (33) bool -> . NAME DOT NAME GREATER_THAN NUMBER
+    (34) bool -> . COUNT LPAREN values RPAREN GREATER_THAN NUMBER
+    (35) bool -> . COUNT LPAREN values RPAREN LESSER_THAN NUMBER
+    (36) bool -> . COUNT LPAREN values RPAREN EQUALS NUMBER
+    (37) bool -> . NAME BETWEEN NUMBER AND NUMBER
+
+    NAME            shift and go to state 51
+    COUNT           shift and go to state 52
+
+    bool                           shift and go to state 82
+
+state 65
+
+    (25) bool -> NAME EQUALS . NUMBER
+    (29) bool -> NAME EQUALS . UP_COMMA NAME UP_COMMA
+
+    NUMBER          shift and go to state 83
+    UP_COMMA        shift and go to state 84
+
+
+state 66
+
+    (26) bool -> NAME LESSER_THAN . NUMBER
+
+    NUMBER          shift and go to state 85
+
+
+state 67
+
+    (27) bool -> NAME GREATER_THAN . NUMBER
+
+    NUMBER          shift and go to state 86
+
+
+state 68
+
+    (30) bool -> NAME DOT . NAME EQUALS UP_COMMA NAME UP_COMMA
+    (31) bool -> NAME DOT . NAME EQUALS NUMBER
+    (32) bool -> NAME DOT . NAME LESSER_THAN NUMBER
+    (33) bool -> NAME DOT . NAME GREATER_THAN NUMBER
+
+    NAME            shift and go to state 87
+
+
+state 69
+
+    (37) bool -> NAME BETWEEN . NUMBER AND NUMBER
+
+    NUMBER          shift and go to state 88
+
+
+state 70
+
+    (34) bool -> COUNT LPAREN . values RPAREN GREATER_THAN NUMBER
+    (35) bool -> COUNT LPAREN . values RPAREN LESSER_THAN NUMBER
+    (36) bool -> COUNT LPAREN . values RPAREN EQUALS NUMBER
+    (16) values -> . NAME
+    (17) values -> . NAME COMMA values
+    (18) values -> . UP_COMMA NAME UP_COMMA
+    (19) values -> . UP_COMMA NAME UP_COMMA COMMA values
+    (20) values -> . NUMBER
+    (21) values -> . ANY
+
+    NAME            shift and go to state 12
+    UP_COMMA        shift and go to state 16
+    NUMBER          shift and go to state 17
+    ANY             shift and go to state 25
+
+    values                         shift and go to state 89
+
+state 71
+
+    (5) query -> SELECT attributes FROM grouping JOIN NAME . ON joiner condition
+
+    ON              shift and go to state 90
+
+
+state 72
+
+    (6) query -> SELECT attributes FROM grouping GROUP_BY NAME .
+    (9) query -> SELECT attributes FROM grouping GROUP_BY NAME . ORDER_BY attributes
+    (10) query -> SELECT attributes FROM grouping GROUP_BY NAME . HAVING bool
+
+    END             reduce using rule 6 (query -> SELECT attributes FROM grouping GROUP_BY NAME .)
+    ORDER_BY        shift and go to state 91
+    HAVING          shift and go to state 92
+
+
+state 73
+
+    (4) query -> SELECT COUNT LPAREN attributes RPAREN FROM . grouping
+    (7) query -> SELECT COUNT LPAREN attributes RPAREN FROM . grouping GROUP_BY NAME
+    (8) query -> SELECT COUNT LPAREN attributes RPAREN FROM . grouping GROUP_BY NAME HAVING bool
+    (11) grouping -> . NAME condition
+
+    NAME            shift and go to state 38
+
+    grouping                       shift and go to state 93
+
+state 74
+
+    (19) values -> UP_COMMA NAME UP_COMMA COMMA values .
+
+    FROM            reduce using rule 19 (values -> UP_COMMA NAME UP_COMMA COMMA values .)
+    RPAREN          reduce using rule 19 (values -> UP_COMMA NAME UP_COMMA COMMA values .)
+    VALUES          reduce using rule 19 (values -> UP_COMMA NAME UP_COMMA COMMA values .)
+    END             reduce using rule 19 (values -> UP_COMMA NAME UP_COMMA COMMA values .)
+
+
+state 75
+
+    (39) insertion -> VALUES LPAREN values . RPAREN
+
+    RPAREN          shift and go to state 94
+
+
+state 76
+
+    (41) editions -> NAME EQUALS NUMBER .
+
+    COMMA           reduce using rule 41 (editions -> NAME EQUALS NUMBER .)
+    WHERE           reduce using rule 41 (editions -> NAME EQUALS NUMBER .)
+    END             reduce using rule 41 (editions -> NAME EQUALS NUMBER .)
+
+
+state 77
+
+    (42) editions -> NAME EQUALS UP_COMMA . NAME UP_COMMA
+
+    NAME            shift and go to state 95
+
+
+state 78
+
+    (43) editions -> editions COMMA editions .
+    (43) editions -> editions . COMMA editions
+
+  ! shift/reduce conflict for COMMA resolved as shift
+    WHERE           reduce using rule 43 (editions -> editions COMMA editions .)
+    END             reduce using rule 43 (editions -> editions COMMA editions .)
+    COMMA           shift and go to state 61
+
+  ! COMMA           [ reduce using rule 43 (editions -> editions COMMA editions .) ]
+
+
+state 79
+
+    (48) typing -> NAME LPAREN . NUMBER RPAREN
+
+    NUMBER          shift and go to state 96
+
+
+state 80
+
+    (47) addition -> NAME typing setting .
+
+    END             reduce using rule 47 (addition -> NAME typing setting .)
+
+
+state 81
+
+    (50) setting -> NOT_NULL .
+
+    END             reduce using rule 50 (setting -> NOT_NULL .)
+
+
+state 82
+
+    (28) bool -> bool AND bool .
+    (28) bool -> bool . AND bool
+
+  ! shift/reduce conflict for AND resolved as shift
+    END             reduce using rule 28 (bool -> bool AND bool .)
+    JOIN            reduce using rule 28 (bool -> bool AND bool .)
+    GROUP_BY        reduce using rule 28 (bool -> bool AND bool .)
+    AND             shift and go to state 64
+
+  ! AND             [ reduce using rule 28 (bool -> bool AND bool .) ]
+
+
+state 83
+
+    (25) bool -> NAME EQUALS NUMBER .
+
+    AND             reduce using rule 25 (bool -> NAME EQUALS NUMBER .)
+    END             reduce using rule 25 (bool -> NAME EQUALS NUMBER .)
+    JOIN            reduce using rule 25 (bool -> NAME EQUALS NUMBER .)
+    GROUP_BY        reduce using rule 25 (bool -> NAME EQUALS NUMBER .)
+
+
+state 84
+
+    (29) bool -> NAME EQUALS UP_COMMA . NAME UP_COMMA
+
+    NAME            shift and go to state 97
+
+
+state 85
+
+    (26) bool -> NAME LESSER_THAN NUMBER .
+
+    AND             reduce using rule 26 (bool -> NAME LESSER_THAN NUMBER .)
+    END             reduce using rule 26 (bool -> NAME LESSER_THAN NUMBER .)
+    JOIN            reduce using rule 26 (bool -> NAME LESSER_THAN NUMBER .)
+    GROUP_BY        reduce using rule 26 (bool -> NAME LESSER_THAN NUMBER .)
+
+
+state 86
+
+    (27) bool -> NAME GREATER_THAN NUMBER .
+
+    AND             reduce using rule 27 (bool -> NAME GREATER_THAN NUMBER .)
+    END             reduce using rule 27 (bool -> NAME GREATER_THAN NUMBER .)
+    JOIN            reduce using rule 27 (bool -> NAME GREATER_THAN NUMBER .)
+    GROUP_BY        reduce using rule 27 (bool -> NAME GREATER_THAN NUMBER .)
+
+
+state 87
+
+    (30) bool -> NAME DOT NAME . EQUALS UP_COMMA NAME UP_COMMA
+    (31) bool -> NAME DOT NAME . EQUALS NUMBER
+    (32) bool -> NAME DOT NAME . LESSER_THAN NUMBER
+    (33) bool -> NAME DOT NAME . GREATER_THAN NUMBER
+
+    EQUALS          shift and go to state 98
+    LESSER_THAN     shift and go to state 99
+    GREATER_THAN    shift and go to state 100
+
+
+state 88
+
+    (37) bool -> NAME BETWEEN NUMBER . AND NUMBER
+
+    AND             shift and go to state 101
+
+
+state 89
+
+    (34) bool -> COUNT LPAREN values . RPAREN GREATER_THAN NUMBER
+    (35) bool -> COUNT LPAREN values . RPAREN LESSER_THAN NUMBER
+    (36) bool -> COUNT LPAREN values . RPAREN EQUALS NUMBER
+
+    RPAREN          shift and go to state 102
+
+
+state 90
+
+    (5) query -> SELECT attributes FROM grouping JOIN NAME ON . joiner condition
+    (22) joiner -> . NAME DOT NAME EQUALS NAME DOT NAME
+
+    NAME            shift and go to state 103
+
+    joiner                         shift and go to state 104
+
+state 91
+
+    (9) query -> SELECT attributes FROM grouping GROUP_BY NAME ORDER_BY . attributes
+    (12) attributes -> . ANY
+    (13) attributes -> . DISTINCT NAME
+    (14) attributes -> . LPAREN values RPAREN
+    (15) attributes -> . values
+    (16) values -> . NAME
+    (17) values -> . NAME COMMA values
+    (18) values -> . UP_COMMA NAME UP_COMMA
+    (19) values -> . UP_COMMA NAME UP_COMMA COMMA values
+    (20) values -> . NUMBER
+    (21) values -> . ANY
+
+    ANY             shift and go to state 13
+    DISTINCT        shift and go to state 14
+    LPAREN          shift and go to state 11
+    NAME            shift and go to state 12
+    UP_COMMA        shift and go to state 16
+    NUMBER          shift and go to state 17
+
+    attributes                     shift and go to state 105
+    values                         shift and go to state 15
+
+state 92
+
+    (10) query -> SELECT attributes FROM grouping GROUP_BY NAME HAVING . bool
+    (25) bool -> . NAME EQUALS NUMBER
+    (26) bool -> . NAME LESSER_THAN NUMBER
+    (27) bool -> . NAME GREATER_THAN NUMBER
+    (28) bool -> . bool AND bool
+    (29) bool -> . NAME EQUALS UP_COMMA NAME UP_COMMA
+    (30) bool -> . NAME DOT NAME EQUALS UP_COMMA NAME UP_COMMA
+    (31) bool -> . NAME DOT NAME EQUALS NUMBER
+    (32) bool -> . NAME DOT NAME LESSER_THAN NUMBER
+    (33) bool -> . NAME DOT NAME GREATER_THAN NUMBER
+    (34) bool -> . COUNT LPAREN values RPAREN GREATER_THAN NUMBER
+    (35) bool -> . COUNT LPAREN values RPAREN LESSER_THAN NUMBER
+    (36) bool -> . COUNT LPAREN values RPAREN EQUALS NUMBER
+    (37) bool -> . NAME BETWEEN NUMBER AND NUMBER
+
+    NAME            shift and go to state 51
+    COUNT           shift and go to state 52
+
+    bool                           shift and go to state 106
+
+state 93
+
+    (4) query -> SELECT COUNT LPAREN attributes RPAREN FROM grouping .
+    (7) query -> SELECT COUNT LPAREN attributes RPAREN FROM grouping . GROUP_BY NAME
+    (8) query -> SELECT COUNT LPAREN attributes RPAREN FROM grouping . GROUP_BY NAME HAVING bool
+
+    END             reduce using rule 4 (query -> SELECT COUNT LPAREN attributes RPAREN FROM grouping .)
+    GROUP_BY        shift and go to state 107
+
+
+state 94
+
+    (39) insertion -> VALUES LPAREN values RPAREN .
+
+    END             reduce using rule 39 (insertion -> VALUES LPAREN values RPAREN .)
+
+
+state 95
+
+    (42) editions -> NAME EQUALS UP_COMMA NAME . UP_COMMA
+
+    UP_COMMA        shift and go to state 108
+
+
+state 96
+
+    (48) typing -> NAME LPAREN NUMBER . RPAREN
+
+    RPAREN          shift and go to state 109
+
+
+state 97
+
+    (29) bool -> NAME EQUALS UP_COMMA NAME . UP_COMMA
+
+    UP_COMMA        shift and go to state 110
+
+
+state 98
+
+    (30) bool -> NAME DOT NAME EQUALS . UP_COMMA NAME UP_COMMA
+    (31) bool -> NAME DOT NAME EQUALS . NUMBER
+
+    UP_COMMA        shift and go to state 111
+    NUMBER          shift and go to state 112
+
+
+state 99
+
+    (32) bool -> NAME DOT NAME LESSER_THAN . NUMBER
+
+    NUMBER          shift and go to state 113
+
+
+state 100
+
+    (33) bool -> NAME DOT NAME GREATER_THAN . NUMBER
+
+    NUMBER          shift and go to state 114
+
+
+state 101
+
+    (37) bool -> NAME BETWEEN NUMBER AND . NUMBER
+
+    NUMBER          shift and go to state 115
+
+
+state 102
+
+    (34) bool -> COUNT LPAREN values RPAREN . GREATER_THAN NUMBER
+    (35) bool -> COUNT LPAREN values RPAREN . LESSER_THAN NUMBER
+    (36) bool -> COUNT LPAREN values RPAREN . EQUALS NUMBER
+
+    GREATER_THAN    shift and go to state 116
+    LESSER_THAN     shift and go to state 117
+    EQUALS          shift and go to state 118
+
+
+state 103
+
+    (22) joiner -> NAME . DOT NAME EQUALS NAME DOT NAME
+
+    DOT             shift and go to state 119
+
+
+state 104
+
+    (5) query -> SELECT attributes FROM grouping JOIN NAME ON joiner . condition
+    (23) condition -> . WHERE bool
+    (24) condition -> . empty
+    (2) empty -> .
+
+    WHERE           shift and go to state 35
+    END             reduce using rule 2 (empty -> .)
+
+    condition                      shift and go to state 120
+    empty                          shift and go to state 36
+
+state 105
+
+    (9) query -> SELECT attributes FROM grouping GROUP_BY NAME ORDER_BY attributes .
+
+    END             reduce using rule 9 (query -> SELECT attributes FROM grouping GROUP_BY NAME ORDER_BY attributes .)
+
+
+state 106
+
+    (10) query -> SELECT attributes FROM grouping GROUP_BY NAME HAVING bool .
+    (28) bool -> bool . AND bool
+
+    END             reduce using rule 10 (query -> SELECT attributes FROM grouping GROUP_BY NAME HAVING bool .)
+    AND             shift and go to state 64
+
+
+state 107
+
+    (7) query -> SELECT COUNT LPAREN attributes RPAREN FROM grouping GROUP_BY . NAME
+    (8) query -> SELECT COUNT LPAREN attributes RPAREN FROM grouping GROUP_BY . NAME HAVING bool
+
+    NAME            shift and go to state 121
+
+
+state 108
+
+    (42) editions -> NAME EQUALS UP_COMMA NAME UP_COMMA .
+
+    COMMA           reduce using rule 42 (editions -> NAME EQUALS UP_COMMA NAME UP_COMMA .)
+    WHERE           reduce using rule 42 (editions -> NAME EQUALS UP_COMMA NAME UP_COMMA .)
+    END             reduce using rule 42 (editions -> NAME EQUALS UP_COMMA NAME UP_COMMA .)
+
+
+state 109
+
+    (48) typing -> NAME LPAREN NUMBER RPAREN .
+
+    NOT_NULL        reduce using rule 48 (typing -> NAME LPAREN NUMBER RPAREN .)
+
+
+state 110
+
+    (29) bool -> NAME EQUALS UP_COMMA NAME UP_COMMA .
+
+    AND             reduce using rule 29 (bool -> NAME EQUALS UP_COMMA NAME UP_COMMA .)
+    END             reduce using rule 29 (bool -> NAME EQUALS UP_COMMA NAME UP_COMMA .)
+    JOIN            reduce using rule 29 (bool -> NAME EQUALS UP_COMMA NAME UP_COMMA .)
+    GROUP_BY        reduce using rule 29 (bool -> NAME EQUALS UP_COMMA NAME UP_COMMA .)
+
+
+state 111
+
+    (30) bool -> NAME DOT NAME EQUALS UP_COMMA . NAME UP_COMMA
+
+    NAME            shift and go to state 122
+
+
+state 112
+
+    (31) bool -> NAME DOT NAME EQUALS NUMBER .
+
+    AND             reduce using rule 31 (bool -> NAME DOT NAME EQUALS NUMBER .)
+    END             reduce using rule 31 (bool -> NAME DOT NAME EQUALS NUMBER .)
+    JOIN            reduce using rule 31 (bool -> NAME DOT NAME EQUALS NUMBER .)
+    GROUP_BY        reduce using rule 31 (bool -> NAME DOT NAME EQUALS NUMBER .)
+
+
+state 113
+
+    (32) bool -> NAME DOT NAME LESSER_THAN NUMBER .
+
+    AND             reduce using rule 32 (bool -> NAME DOT NAME LESSER_THAN NUMBER .)
+    END             reduce using rule 32 (bool -> NAME DOT NAME LESSER_THAN NUMBER .)
+    JOIN            reduce using rule 32 (bool -> NAME DOT NAME LESSER_THAN NUMBER .)
+    GROUP_BY        reduce using rule 32 (bool -> NAME DOT NAME LESSER_THAN NUMBER .)
+
+
+state 114
+
+    (33) bool -> NAME DOT NAME GREATER_THAN NUMBER .
+
+    AND             reduce using rule 33 (bool -> NAME DOT NAME GREATER_THAN NUMBER .)
+    END             reduce using rule 33 (bool -> NAME DOT NAME GREATER_THAN NUMBER .)
+    JOIN            reduce using rule 33 (bool -> NAME DOT NAME GREATER_THAN NUMBER .)
+    GROUP_BY        reduce using rule 33 (bool -> NAME DOT NAME GREATER_THAN NUMBER .)
+
+
+state 115
+
+    (37) bool -> NAME BETWEEN NUMBER AND NUMBER .
+
+    AND             reduce using rule 37 (bool -> NAME BETWEEN NUMBER AND NUMBER .)
+    END             reduce using rule 37 (bool -> NAME BETWEEN NUMBER AND NUMBER .)
+    JOIN            reduce using rule 37 (bool -> NAME BETWEEN NUMBER AND NUMBER .)
+    GROUP_BY        reduce using rule 37 (bool -> NAME BETWEEN NUMBER AND NUMBER .)
+
+
+state 116
+
+    (34) bool -> COUNT LPAREN values RPAREN GREATER_THAN . NUMBER
+
+    NUMBER          shift and go to state 123
+
+
+state 117
+
+    (35) bool -> COUNT LPAREN values RPAREN LESSER_THAN . NUMBER
+
+    NUMBER          shift and go to state 124
+
+
+state 118
+
+    (36) bool -> COUNT LPAREN values RPAREN EQUALS . NUMBER
+
+    NUMBER          shift and go to state 125
+
+
+state 119
+
+    (22) joiner -> NAME DOT . NAME EQUALS NAME DOT NAME
+
+    NAME            shift and go to state 126
+
+
+state 120
+
+    (5) query -> SELECT attributes FROM grouping JOIN NAME ON joiner condition .
+
+    END             reduce using rule 5 (query -> SELECT attributes FROM grouping JOIN NAME ON joiner condition .)
+
+
+state 121
+
+    (7) query -> SELECT COUNT LPAREN attributes RPAREN FROM grouping GROUP_BY NAME .
+    (8) query -> SELECT COUNT LPAREN attributes RPAREN FROM grouping GROUP_BY NAME . HAVING bool
+
+    END             reduce using rule 7 (query -> SELECT COUNT LPAREN attributes RPAREN FROM grouping GROUP_BY NAME .)
+    HAVING          shift and go to state 127
+
+
+state 122
+
+    (30) bool -> NAME DOT NAME EQUALS UP_COMMA NAME . UP_COMMA
+
+    UP_COMMA        shift and go to state 128
+
+
+state 123
+
+    (34) bool -> COUNT LPAREN values RPAREN GREATER_THAN NUMBER .
+
+    AND             reduce using rule 34 (bool -> COUNT LPAREN values RPAREN GREATER_THAN NUMBER .)
+    END             reduce using rule 34 (bool -> COUNT LPAREN values RPAREN GREATER_THAN NUMBER .)
+    JOIN            reduce using rule 34 (bool -> COUNT LPAREN values RPAREN GREATER_THAN NUMBER .)
+    GROUP_BY        reduce using rule 34 (bool -> COUNT LPAREN values RPAREN GREATER_THAN NUMBER .)
+
+
+state 124
+
+    (35) bool -> COUNT LPAREN values RPAREN LESSER_THAN NUMBER .
+
+    AND             reduce using rule 35 (bool -> COUNT LPAREN values RPAREN LESSER_THAN NUMBER .)
+    END             reduce using rule 35 (bool -> COUNT LPAREN values RPAREN LESSER_THAN NUMBER .)
+    JOIN            reduce using rule 35 (bool -> COUNT LPAREN values RPAREN LESSER_THAN NUMBER .)
+    GROUP_BY        reduce using rule 35 (bool -> COUNT LPAREN values RPAREN LESSER_THAN NUMBER .)
+
+
+state 125
+
+    (36) bool -> COUNT LPAREN values RPAREN EQUALS NUMBER .
+
+    AND             reduce using rule 36 (bool -> COUNT LPAREN values RPAREN EQUALS NUMBER .)
+    END             reduce using rule 36 (bool -> COUNT LPAREN values RPAREN EQUALS NUMBER .)
+    JOIN            reduce using rule 36 (bool -> COUNT LPAREN values RPAREN EQUALS NUMBER .)
+    GROUP_BY        reduce using rule 36 (bool -> COUNT LPAREN values RPAREN EQUALS NUMBER .)
+
+
+state 126
+
+    (22) joiner -> NAME DOT NAME . EQUALS NAME DOT NAME
+
+    EQUALS          shift and go to state 129
+
+
+state 127
+
+    (8) query -> SELECT COUNT LPAREN attributes RPAREN FROM grouping GROUP_BY NAME HAVING . bool
+    (25) bool -> . NAME EQUALS NUMBER
+    (26) bool -> . NAME LESSER_THAN NUMBER
+    (27) bool -> . NAME GREATER_THAN NUMBER
+    (28) bool -> . bool AND bool
+    (29) bool -> . NAME EQUALS UP_COMMA NAME UP_COMMA
+    (30) bool -> . NAME DOT NAME EQUALS UP_COMMA NAME UP_COMMA
+    (31) bool -> . NAME DOT NAME EQUALS NUMBER
+    (32) bool -> . NAME DOT NAME LESSER_THAN NUMBER
+    (33) bool -> . NAME DOT NAME GREATER_THAN NUMBER
+    (34) bool -> . COUNT LPAREN values RPAREN GREATER_THAN NUMBER
+    (35) bool -> . COUNT LPAREN values RPAREN LESSER_THAN NUMBER
+    (36) bool -> . COUNT LPAREN values RPAREN EQUALS NUMBER
+    (37) bool -> . NAME BETWEEN NUMBER AND NUMBER
+
+    NAME            shift and go to state 51
+    COUNT           shift and go to state 52
+
+    bool                           shift and go to state 130
+
+state 128
+
+    (30) bool -> NAME DOT NAME EQUALS UP_COMMA NAME UP_COMMA .
+
+    AND             reduce using rule 30 (bool -> NAME DOT NAME EQUALS UP_COMMA NAME UP_COMMA .)
+    END             reduce using rule 30 (bool -> NAME DOT NAME EQUALS UP_COMMA NAME UP_COMMA .)
+    JOIN            reduce using rule 30 (bool -> NAME DOT NAME EQUALS UP_COMMA NAME UP_COMMA .)
+    GROUP_BY        reduce using rule 30 (bool -> NAME DOT NAME EQUALS UP_COMMA NAME UP_COMMA .)
+
+
+state 129
+
+    (22) joiner -> NAME DOT NAME EQUALS . NAME DOT NAME
+
+    NAME            shift and go to state 131
+
+
+state 130
+
+    (8) query -> SELECT COUNT LPAREN attributes RPAREN FROM grouping GROUP_BY NAME HAVING bool .
+    (28) bool -> bool . AND bool
+
+    END             reduce using rule 8 (query -> SELECT COUNT LPAREN attributes RPAREN FROM grouping GROUP_BY NAME HAVING bool .)
+    AND             shift and go to state 64
+
+
+state 131
+
+    (22) joiner -> NAME DOT NAME EQUALS NAME . DOT NAME
+
+    DOT             shift and go to state 132
+
+
+state 132
+
+    (22) joiner -> NAME DOT NAME EQUALS NAME DOT . NAME
+
+    NAME            shift and go to state 133
+
+
+state 133
+
+    (22) joiner -> NAME DOT NAME EQUALS NAME DOT NAME .
+
+    WHERE           reduce using rule 22 (joiner -> NAME DOT NAME EQUALS NAME DOT NAME .)
+    END             reduce using rule 22 (joiner -> NAME DOT NAME EQUALS NAME DOT NAME .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for COMMA in state 78 resolved as shift
+WARNING: shift/reduce conflict for AND in state 82 resolved as shift
+WARNING: reduce/reduce conflict in state 13 resolved using rule (attributes -> ANY)
+WARNING: rejected rule (values -> ANY) in state 13
