@@ -2,6 +2,14 @@ pipeline {
 
     agent any
 
+    environment{
+        REPO_URL = 'https://github.com/snyczka/adv_prog_4.git'
+    }
+
+    tools{
+        gradle
+    }
+    
     parameters{
         
     }
