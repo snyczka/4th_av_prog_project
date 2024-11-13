@@ -1,0 +1,133 @@
+
+
+jason:
+Score: 50
+Time: 
+00:06:55 
+04/09/2024
+
+
+jason:
+Score: 20
+Time: 
+00:08:05 
+04/09/2024
+
+
+json:
+Score: 50
+Time:
+01:49:03
+09/09/2024
+
+
+Society:
+Score: 50
+Time:
+01:56:33
+09/09/2024
+File read in 0.6330943999928422 seconds
+Questions formed in 0.009000899997772649 seconds
+Played for 22.241112300020177 seconds
+
+
+sn:
+Score: 50
+Time:
+03:00:19
+09/09/2024
+File read in 0.6690701000043191 seconds
+Questions formed in 0.009559500002069399 seconds
+Played for 104.94616639998276 seconds
+
+
+ss:
+Score: 50
+Time:
+03:01:44
+09/09/2024
+File read in 0.6470874000224285 seconds
+Questions formed in 0.008974299998953938 seconds
+Played for 47.780102999997325 seconds
+
+
+sds:
+Score: 50
+Time:	13:04:38	09/09/2024
+File read in 0.6301934999937657 seconds
+Questions formed in 0.00930150001659058 seconds
+Played for 83.34020720000262 seconds
+
+
+str:
+Score: 40
+Time:	16:36:27	09/09/2024
+File read in 0.7018988999770954 seconds
+Questions formed in 0.009342400007881224 seconds
+Played for 56.89258010004414 seconds
+
+
+lj:
+Score: 50
+Time:	16:44:35	09/09/2024
+File read in 0.6341201000032015 seconds
+Questions formed in 0.009988900041207671 seconds
+Played for 43.98086999997031 seconds
+
+
+mma:
+Score: 30
+Time:	16:45:47	09/09/2024
+File read in 0.6349518999923021 seconds
+Questions formed in 0.009179699991364032 seconds
+Played for 47.26168770005461 seconds
+
+
+h:
+Score: 40
+Time:	17:07:08	09/09/2024
+File read in 0.629295099992305 seconds
+Questions formed in 0.00936949998140335 seconds
+Played for 78.01682920003077 seconds
+
+
+ax:
+Score: 20
+Time:	19:45:13	09/09/2024
+File read in 0.6400738999946043 seconds
+Questions formed in 0.009127699944656342 seconds
+Played for 5.840385999996215 seconds
+
+
+x:
+Score: 40
+Time:	20:09:20	09/09/2024
+File read in 0.6399001999525353 seconds
+Questions formed in 0.00906289997510612 seconds
+Played for 1.497977200022433 seconds
+
+
+fa:
+Score: 10
+Time:	20:43:06	09/09/2024
+File read in 1.1098554999916814 seconds
+Questions formed in 0.011551500007044524 seconds
+Played for 4.47273330000462 seconds
+
+
+srcoi:
+Score: 50
+Time:	19:11:32	12/11/2024
+File read in 0.6619660998694599 seconds
+Questions formed in 0.011047899955883622 seconds
+Played for 56.591048900038004 seconds
+
+
+herer:
+Score: 50
+Time:	12:50:02	13/11/2024
+File read in 1.045324200000323 seconds
+Questions formed in 0.009211500000674278 seconds
+Played for 163.88718170000357 seconds
+
+
