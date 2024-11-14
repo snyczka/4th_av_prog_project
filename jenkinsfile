@@ -15,6 +15,24 @@ pipeline {
     }
 
     stages{
-        
+
+
+
+        stage("Build"){
+            
+            steps{
+
+                script{
+                    git branch: 'Trivia', url: env.REPO_URL
+                }
+            }
+        }
+        stage("test"){
+
+            steps{
+                sh 'python manager.py'
+            }
+        }
+
     }
 }
