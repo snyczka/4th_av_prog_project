@@ -7,7 +7,7 @@ pipeline {
     }
 
     tools{
-        gradle 'Gradle'
+        gradle
     }
 
     parameters{
