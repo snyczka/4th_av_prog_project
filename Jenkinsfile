@@ -18,21 +18,37 @@ pipeline {
 
 
 
-        stage("Build"){
+        stage("Trivia"){
             
             steps{
-
-                script{
-                    git branch: 'Trivia', url: env.REPO_URL
-                }
+                
+                git branch: 'Trivia', url: env.REPO_URL
+                cd 'Project/src'
+                sh 'python3 manager.py'
+                sh ''
+            
             }
         }
-        stage("test"){
+        stage("ECommerce"){
 
             steps{
-                sh 'python manager.py'
+                
+                git branch: 'Ecomerce', url: env.REPO_URL
+                cd 'obligatorio_2/app/src/main'
+                sh ''
+                sh ''
+
             }
         }
+        stage("USQL"){
 
+            steps{
+                git branch: 'USQL', url: env.REPO_URL
+                cd 'USQL'
+                sh 'python3 __init__.py'
+                sh 'python3 '
+
+            }
+        }
     }
 }
