@@ -16,8 +16,6 @@ pipeline {
 
     stages{
 
-
-
         stage("Trivia"){
             
             steps{
